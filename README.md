@@ -1,4 +1,4 @@
-# CRAPI - a "todo" Command-line Rust API
+# CRAPI - a "todo" Rust API
 
 Welcome to CRAPI, a rust-developed application that connects to a PostgreSQL instance and provides RESTful HTTP responses asynchronously. Powered by [Actix-web](https://docs.rs/actix-web/4.3.1/actix_web/), [Diesel](https://docs.rs/diesel/2.1.0/diesel/), and [Rocket](https://docs.rs/rocket/0.5.0-rc.3/rocket/).
 

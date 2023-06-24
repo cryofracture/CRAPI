@@ -17,7 +17,7 @@ pub async fn get_todo_by_id(db: web::Data<Database>, id: web::Path<String>) -> H
 
     match todo {
         Some(todo) => HttpResponse::Ok().json(todo),
-        None => HttpResponse::NotFound().body("Todo not found"),
+        None => HttpResponse::NotFound().body("CRAPI Todo task not found"),
     }
 }
 
@@ -32,7 +32,7 @@ pub async fn delete_todo_by_id(db: web::Data<Database>, id: web::Path<String>) -
     let todo = db.delete_todo_by_id(&id);
     match todo {
         Some(_) => HttpResponse::Ok().finish(),
-        None => HttpResponse::NotFound().body("Todo not found"),
+        None => HttpResponse::NotFound().body("CRAPI Todo task not found"),
     }
 }
 
@@ -41,7 +41,7 @@ pub async fn update_todo_by_id(db: web::Data<Database>, id: web::Path<String>, u
     let todo = db.update_todo_by_id(&id, updated_todo.into_inner());
     match todo {
         Some(todo) => HttpResponse::Ok().json(todo),
-        None => HttpResponse::NotFound().body("Todo not found"),
+        None => HttpResponse::NotFound().body("CRAPI Todo task not found"),
     }
 }
 

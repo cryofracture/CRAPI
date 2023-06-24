@@ -13,7 +13,7 @@ pub struct Response {
 #[get("/health")]
 async fn healthcheck() -> impl Responder {
     let response = Response {
-        message: "Everything is working fine".to_string(),
+        message: "All CRAPI systems are working, commander.".to_string(),
     };
     HttpResponse::Ok().json(response)
 }
@@ -21,7 +21,7 @@ async fn healthcheck() -> impl Responder {
 
 async fn not_found() -> Result<HttpResponse> {
     let response = Response {
-        message: "Resource not found".to_string(),
+        message: "Requested CRAPI resource not found.".to_string(),
     };
     Ok(HttpResponse::NotFound().json(response))
 }

@@ -21,14 +21,14 @@ impl Database {
         let manager = ConnectionManager::<PgConnection>::new(database_url);
         let pool: DBPool = r2d2::Pool::builder()
             .build(manager)
-            .expect("Failed to create pool.");
+            .expect("Failed to create CRAPI pool.");
         Database { pool }
     }
 
     pub fn get_todos(&self) -> Vec<Todo> {
         todos
             .load::<Todo>(&mut self.pool.get().unwrap())
-            .expect("Error loading all todos")
+            .expect("Error loading all CRAPI todos")
     }
 
     pub fn create_todo(&self, todo: Todo) -> Result<Todo, Error> {
@@ -41,7 +41,7 @@ impl Database {
         diesel::insert_into(todos)
             .values(&todo)
             .execute(&mut self.pool.get().unwrap())
-            .expect("Error creating new todo");
+            .expect("Error creating new CRAPI todo");
         Ok(todo)
     }
 
@@ -49,14 +49,14 @@ impl Database {
         let todo = todos
             .find(todo_id)
             .get_result::<Todo>(&mut self.pool.get().unwrap())
-            .expect("Error loading todo by id");
+            .expect("Error loading CRAPI todo by id");
         Some(todo)
     }
 
     pub fn delete_todo_by_id(&self, todo_id: &str) -> Option<usize> {
         let count = diesel::delete(todos.find(todo_id))
             .execute(&mut self.pool.get().unwrap())
-            .expect("Error deleting todo by id");
+            .expect("Error deleting CRAPI todo by id");
         Some(count)
     }
 
